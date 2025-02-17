@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://drn5567datbpt"]
+[gd_scene load_steps=6 format=3 uid="uid://drn5567datbpt"]
 
-[ext_resource type="PackedScene" uid="uid://bvevt8y80rut8" path="res://Pause.tscn" id="1_0bud2"]
-[ext_resource type="Script" path="res://card_test.gd" id="1_3t221"]
+[ext_resource type="Script" path="res://card_test.gd" id="1_ku2nj"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_6uj7r"]
 size = Vector2(1, 1)
@@ -17,7 +16,7 @@ material = SubResource("StandardMaterial3D_g8hly")
 size = Vector3(0.064, 0, 0.089)
 
 [node name="CardTest" type="Node3D"]
-script = ExtResource("1_3t221")
+script = ExtResource("1_ku2nj")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_6uj7r")
@@ -52,9 +51,6 @@ shadow_blur = 0.2
 omni_attenuation = 2.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-
-[node name="Pause" parent="." instance=ExtResource("1_0bud2")]
-visible = false
 
 [connection signal="input_event" from="Card Root/Area3D" to="." method="_on_area_3d_input_event"]
 [connection signal="mouse_entered" from="Card Root/Area3D" to="." method="_on_area_3d_mouse_entered"]

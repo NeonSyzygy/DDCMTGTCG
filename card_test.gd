@@ -1,8 +1,5 @@
 extends Node3D
 
-@onready var pause_menu = $Pause
-var paused = false
-
 @onready var card = $"Card Root/Card Hover/Card Flip Lift/Card Visible"
 var is_tapped = false
 var tap_speed = 10
@@ -40,16 +37,6 @@ func _process(delta: float) -> void:
 		hover.position.y = lerp(hover.position.y, hover_height, delta * hover_speed)
 	else:
 		hover.position.y = lerp(hover.position.y, non_hover_height, delta * hover_speed)
-
-func pauseMenu():
-	if paused:
-		pause_menu.hide()
-		Engine.time_scale = 1
-	else:
-		pause_menu.show()
-		Engine.time_scale = 0
-	
-	paused = !paused
 
 func _on_area_3d_input_event(camera: Node, event: InputEvent, event_position: Vector3, normal: Vector3, shape_idx: int) -> void:
 	if event is InputEventMouseButton:

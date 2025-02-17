@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bvevt8y80rut8"]
 
-[ext_resource type="Script" path="res://pause.gd" id="1_px8qf"]
+[ext_resource type="Script" path="res://player_field_pause.gd" id="1_ynrbe"]
 
 [node name="Pause" type="Control"]
 layout_mode = 3
@@ -9,7 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_px8qf")
+script = ExtResource("1_ynrbe")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
