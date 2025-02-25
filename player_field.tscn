@@ -1,13 +1,71 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqdu06qa765tm"]
+[gd_scene load_steps=8 format=3 uid="uid://bqdu06qa765tm"]
 
 [ext_resource type="Script" path="res://player_field.gd" id="1_nj2ki"]
 [ext_resource type="PackedScene" uid="uid://bvevt8y80rut8" path="res://player_field_pause.tscn" id="2_so55n"]
 [ext_resource type="PackedScene" uid="uid://drn5567datbpt" path="res://card_test.tscn" id="3_18xdu"]
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_n8b88"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_oegod"]
+size = Vector2(1.265, 0.356)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g8hly"]
+albedo_color = Color(0.387572, 0.682836, 0.867337, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5d4y7"]
+material = SubResource("StandardMaterial3D_g8hly")
+size = Vector3(0.064, 0, 0.089)
+
 [node name="Player Field" type="Node3D"]
 script = ExtResource("1_nj2ki")
+
+[node name="Junk" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Junk"]
+visible = false
+mesh = SubResource("PlaneMesh_n8b88")
+skeleton = NodePath("../..")
+
+[node name="Camera3D" type="Camera3D" parent="Junk"]
+transform = Transform3D(1, 0, 0, 0, 0.601815, 0.798636, 0, -0.798636, 0.601815, -1.19209e-07, 0.60129, 0.180852)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Junk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.781565, 0.976547, -0.326768)
+visible = false
+light_intensity_lumens = 100.0
+light_size = 0.5
+shadow_enabled = true
+shadow_bias = 0.01
+shadow_blur = 0.2
+omni_attenuation = 2.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Junk"]
+transform = Transform3D(0.94803, 1.39082e-08, -0.318182, 0.271668, -0.520578, 0.809441, -0.165638, -0.853814, -0.493523, 0, 4, 0)
+light_intensity_lux = 5.4
+shadow_enabled = true
+shadow_normal_bias = 1.0
+shadow_blur = 0.8
+directional_shadow_split_1 = 0.055
+directional_shadow_split_2 = 1.0
+directional_shadow_split_3 = 1.0
+directional_shadow_fade_start = 1.0
+directional_shadow_max_distance = 10.0
+directional_shadow_pancake_size = 0.0
 
 [node name="Pause" parent="." instance=ExtResource("2_so55n")]
 visible = false
 
 [node name="CardTest" parent="." instance=ExtResource("3_18xdu")]
+
+[node name="Player 1 Board" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player 1 Board"]
+mesh = SubResource("PlaneMesh_oegod")
+
+[node name="Deck Placeholder" type="MeshInstance3D" parent="Player 1 Board/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.251, 0.01, 0.0175751)
+mesh = SubResource("BoxMesh_5d4y7")
+
+[node name="Graveyard Placeholder" type="MeshInstance3D" parent="Player 1 Board/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.251, 0.01, 0.112)
+mesh = SubResource("BoxMesh_5d4y7")

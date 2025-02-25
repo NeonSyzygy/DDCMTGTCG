@@ -1,29 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://drn5567datbpt"]
+[gd_scene load_steps=5 format=3 uid="uid://drn5567datbpt"]
 
 [ext_resource type="Script" path="res://card_test.gd" id="1_ku2nj"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_6uj7r"]
-size = Vector2(1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8nmw3"]
 size = Vector3(0.064, 0.001, 0.089)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g8hly"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_drymk"]
 albedo_color = Color(0.387572, 0.682836, 0.867337, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_euy4i"]
-material = SubResource("StandardMaterial3D_g8hly")
+material = SubResource("StandardMaterial3D_drymk")
 size = Vector3(0.064, 0, 0.089)
 
 [node name="CardTest" type="Node3D"]
 script = ExtResource("1_ku2nj")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_6uj7r")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.766605, 0.642119, 0, -0.642119, 0.766605, 0, 0.210267, 0.219258)
-fov = 40.0
 
 [node name="Card Root" type="Node3D" parent="."]
 
@@ -40,17 +30,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
 
 [node name="Card Visible" type="MeshInstance3D" parent="Card Root/Card Hover/Card Flip Lift"]
 mesh = SubResource("BoxMesh_euy4i")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.781565, 0.976547, -0.326768)
-light_intensity_lumens = 100.0
-light_size = 0.5
-shadow_enabled = true
-shadow_bias = 0.01
-shadow_blur = 0.2
-omni_attenuation = 2.0
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 
 [connection signal="input_event" from="Card Root/Area3D" to="." method="_on_area_3d_input_event"]
 [connection signal="mouse_entered" from="Card Root/Area3D" to="." method="_on_area_3d_mouse_entered"]
